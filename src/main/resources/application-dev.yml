@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/iot_cloud?createDatabaseIfNotExist=true
+    username: root
+    password: test55@Good

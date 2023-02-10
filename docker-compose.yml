@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+
+  spring:
+    container_name: iot-booth
+    build: .
+    ports:
+      - "5155:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DATABASE_URL: jdbc:mysql://iot-booth-mysql:3306/iot_booth_prod?creatDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: iot-booth-mysql-secret
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+
+  mysql:
+    container_name: iot-booth-mysql
+    image: mysql:8
+    ports:
+      - "3004:3306"
+    environment:
+      MYSQL_DATABASE: iot_booth_prod
+      MYSQL_ROOT_PASSWORD: iot-booth-mysql-secret
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
