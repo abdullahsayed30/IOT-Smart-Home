@@ -9,9 +9,11 @@ services:
       - "5155:8080"
     environment:
       SPRING_PROFILES_ACTIVE: prod
-      DATABASE_URL: jdbc:mysql://iot-booth-mysql:3306/iot_booth_prod?creatDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      DATABASE_HOST: iot-booth-mongo
+      DATABASE_PORT: 27017
       DATABASE_USERNAME: root
-      DATABASE_PASSWORD: iot-booth-mysql-secret
+      DATABASE_PASSWORD: iot-booth-mongo-secret
+      DATABASE_NAME: iot_booth_prod
 
     depends_on:
       - mongo

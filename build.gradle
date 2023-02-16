@@ -19,11 +19,8 @@ repositories {
 }
 
 dependencies {
-	// Data dependencies
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//	runtimeOnly 'com.mysql:mysql-connector-j'
+	// Database dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-
 
 	// Security dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-security'

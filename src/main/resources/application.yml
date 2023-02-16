@@ -2,21 +2,6 @@ spring:
   profiles:
     active: dev
 
-#  jpa:
-#    properties:
-#      hibernate:
-#        dialect: MongoDB
-#        format_sql: 'true'
-#        ddl-auto: create-drop
-#    generate-ddl: true
-#    show-sql: true
-
-#  mqtt:
-#    url:
-#    client:
-#      id:
-
-
 rsa:
     private-key: classpath:certs/private.pem
     public-key: classpath:certs/public.pem

@@ -1,11 +1,10 @@
 spring:
   data:
     mongodb:
+      host: localhost
+      port: 3005
       username: root
       password: iot-booth-mongo-secret
       authentication-database: admin
-      host: localhost
-      port: 3005
       database: iot_booth_prod
-#      authentication-mechanism: NONE
 
