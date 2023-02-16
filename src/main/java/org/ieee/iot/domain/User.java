@@ -1,6 +1,7 @@
 package org.ieee.iot.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
@@ -13,13 +14,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document("users")
+@JsonIgnoreProperties({"id", "password", "enabled"})
 public class User {
 
     @Transient
     public static final String SEQ_NAME = "users_sequence";
 
     @Id
-    @JsonIgnore
     private Long id;
 
     private String firstName;
