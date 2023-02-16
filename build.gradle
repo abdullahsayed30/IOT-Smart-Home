@@ -19,16 +19,32 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	// Data dependencies
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	runtimeOnly 'com.mysql:mysql-connector-j'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+
+	// Security dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+	// Validation dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Web dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+	// MQTT dependencies Client
+	implementation 'org.springframework.integration:spring-integration-mqtt:5.5.2'
+
+	// Dev tools for faster development
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }

@@ -1,5 +1,11 @@
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/iot_cloud?createDatabaseIfNotExist=true
-    username: root
-    password: test55@Good
+  data:
+    mongodb:
+      username: root
+      password: iot-booth-mongo-secret
+      authentication-database: admin
+      host: localhost
+      port: 3005
+      database: iot_booth_prod
+#      authentication-mechanism: NONE
+

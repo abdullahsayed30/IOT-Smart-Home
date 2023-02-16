@@ -5,23 +5,27 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
-@Document(collection = "devices")
-public class Device {
+@Document("rooms")
+public class Room {
 
     @Transient
-    public static final String SEQ_NAME = "devices_sequence";
+    public static final String SEQ_NAME = "rooms_sequence";
 
     @Id
     private Long id;
 
-//    @Column(columnDefinition = "varchar(255) unique")
+    @DocumentReference
+    private House house;
+
     private String name;
 
-    private String description;
+    @DocumentReference
+    private List<Device> devices;
 
-//    @Column(columnDefinition = "boolean default false")
-    private boolean state;
 }
