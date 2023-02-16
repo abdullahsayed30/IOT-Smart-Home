@@ -14,20 +14,15 @@ services:
       DATABASE_PASSWORD: iot-booth-mysql-secret
 
     depends_on:
-      mongo:
-        condition: service_healthy
+      - mongo
 
 
   mongo:
     container_name: iot-booth-mongo
     image: mongo:latest
+    restart: always
     ports:
       - "3005:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: iot-booth-mongo-secret
-    healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
