@@ -20,6 +20,11 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+/*************************************************
+ * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ ************************************************/
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor

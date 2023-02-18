@@ -4,10 +4,10 @@ import jakarta.validation.Valid;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.ieee.iot.domain.User;
-import org.ieee.iot.domain.req.NewUserModel;
-import org.ieee.iot.domain.res.Response;
+import org.ieee.iot.helper.req_model.NewUserModel;
+import org.ieee.iot.helper.res_model.Response;
 import org.ieee.iot.service.token.TokenService;
-import org.ieee.iot.service.auth.AuthServiceImpl;
+import org.ieee.iot.service.user.UserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,12 +16,17 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+
+/*************************************************
+ * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ ************************************************/
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/auth")
 public class AuthController {
 
-    private final AuthServiceImpl authServiceImpl;
+    private final UserServiceImpl authServiceImpl;
     private final TokenService tokenService;
 
     @PostMapping("/signup")

@@ -1,7 +1,7 @@
 //package org.ieee.iot.controller;
 //
 //import lombok.RequiredArgsConstructor;
-//import org.ieee.iot.domain.Device;
+//import org.ieee.iot.domain.devices.Device;
 //import org.ieee.iot.service.DeviceService;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.*;

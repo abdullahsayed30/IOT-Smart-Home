@@ -1,23 +1,32 @@
-package org.ieee.iot.service.auth;
+package org.ieee.iot.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.ieee.iot.db.sequence.SequenceGenerator;
+import org.ieee.iot.domain.House;
 import org.ieee.iot.domain.User;
-import org.ieee.iot.domain.req.NewUserModel;
+import org.ieee.iot.helper.req_model.NewUserModel;
 import org.ieee.iot.repository.UserRepository;
+import org.ieee.iot.service.house.HouseService;
 import org.ieee.iot.service.token.TokenService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+/*************************************************
+ * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ ************************************************/
+
 @Service
 @RequiredArgsConstructor
-public class AuthServiceImpl implements AuthService {
+public class UserServiceImpl implements UserService {
 
-    private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
     private final SequenceGenerator sequenceGenerator;
-
+    // Auth related
+    private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
+
+    private final UserRepository userRepository;
+    private final HouseService houseService;
 
     @Override
     public String signupNewUser(NewUserModel userModel) {
@@ -31,6 +40,8 @@ public class AuthServiceImpl implements AuthService {
 
         Long id = sequenceGenerator.generateSequence(User.SEQ_NAME);
 
+        House house = houseService.createHouseForNewUser(userModel.getAddress());
+
         User user = new User(
                 id,
                 userModel.getFirstName(),
@@ -39,7 +50,8 @@ public class AuthServiceImpl implements AuthService {
                 userModel.getUsername(),
                 userModel.getEmail(),
                 passwordEncoder.encode(userModel.getPassword()),
-                userModel.getPhoneNumber()
+                userModel.getPhoneNumber(),
+                house
         );
 
         user.setRoles("USER");

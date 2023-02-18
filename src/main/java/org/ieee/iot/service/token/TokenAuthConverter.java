@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+
+/*************************************************
+ * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ ************************************************/
+
 public class TokenAuthConverter implements Converter<Jwt, AbstractAuthenticationToken> {
 
     public static final String ROLE_AUTHORITY_PREFIX = "ROLE_";

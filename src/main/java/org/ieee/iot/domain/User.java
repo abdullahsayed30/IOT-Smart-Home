@@ -11,6 +11,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
+
+
+/*************************************************
+ * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ ************************************************/
 
 @Data
 @Document("users")
@@ -22,7 +28,6 @@ public class User {
 
     @Id
     private Long id;
-
     private String firstName;
     private String lastName;
     private String address;
@@ -35,11 +40,14 @@ public class User {
     @Indexed(unique = true)
     private String phoneNumber;
 
+    @DocumentReference
+    private House house;
+
     // Security related fields
     private boolean enabled = true;
     private String roles;
 
-    public User(Long id, String firstName, String lastName, String address, String username, String email, String password, String phoneNumber) {
+    public User(Long id, String firstName, String lastName, String address, String username, String email, String password, String phoneNumber, House house) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,5 +56,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.house = house;
     }
 }

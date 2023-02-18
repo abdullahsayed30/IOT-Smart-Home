@@ -18,6 +18,11 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
 
+
+/*************************************************
+ * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ ************************************************/
+
 @Configuration
 @Slf4j
 public class MqttConfig {
@@ -25,7 +30,7 @@ public class MqttConfig {
     private static final String MQTT_SERVER = "tcp://144.24.219.44:1888";
     private static final String MQTT_USERNAME = "iot_spring_client";
     private static final String MQTT_PASSWORD = "iot_spring_client_secret";
-    private static final String MQTT_CLIENT_ID = "spring_mqtt_server";
+    private static final String MQTT_CLIENT_ID = "test_spring_mqtt_server";
 
 
     @Bean
@@ -40,7 +45,8 @@ public class MqttConfig {
         options.setPassword(MQTT_PASSWORD.toCharArray());
         options.setCleanSession(true);
         options.setAutomaticReconnect(true);
-        options.setConnectionTimeout(10);
+        options.setConnectionTimeout(30);
+        options.setKeepAliveInterval(60);
 
         factory.setConnectionOptions(options);
 
@@ -55,7 +61,7 @@ public class MqttConfig {
                         MQTT_CLIENT_ID + "_in", mqttClientFactory(),
                         "/#");
 
-        adapter.setCompletionTimeout(5000);
+        adapter.setCompletionTimeout(20000);
         adapter.setConverter(new DefaultPahoMessageConverter());
         adapter.setQos(2);
         adapter.setOutputChannel(mqttInputChannel());

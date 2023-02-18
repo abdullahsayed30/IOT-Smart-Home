@@ -1,6 +1,6 @@
 package org.ieee.iot.excption;
 
-import org.ieee.iot.domain.res.Response;
+import org.ieee.iot.helper.res_model.Response;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.Map;
 import java.util.stream.Collectors;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
+
+/*************************************************
+ * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ ************************************************/
 
 @RestControllerAdvice
 public class BaseExceptionHandler {

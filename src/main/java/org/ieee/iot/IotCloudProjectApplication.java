@@ -10,6 +10,11 @@ import org.springframework.integration.annotation.IntegrationComponentScan;
 
 import java.util.Arrays;
 
+
+/*************************************************
+ * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ ************************************************/
+
 @SpringBootApplication
 @IntegrationComponentScan
 public class IotCloudProjectApplication {

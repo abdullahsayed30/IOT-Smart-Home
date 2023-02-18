@@ -1,10 +1,15 @@
-package org.ieee.iot.domain.req;
+package org.ieee.iot.helper.req_model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.springframework.data.mongodb.core.index.Indexed;
+
+
+/*************************************************
+ * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ ************************************************/
 
 @Data
 public class NewUserModel {
