@@ -2,6 +2,9 @@ package org.ieee.iot.service.house;
 
 import org.ieee.iot.domain.House;
 import org.ieee.iot.domain.Room;
+import org.ieee.iot.domain.User;
+
+import java.util.List;
 
 
 /*************************************************
@@ -9,9 +12,9 @@ import org.ieee.iot.domain.Room;
  ************************************************/
 
 public interface HouseService {
-    House createHouseForNewUser(String address);
+
+    House createHouseForNewUser(User user);
 
     House createHouse(House house);
 
-    void addRoomToHouse(House house, Room room);
 }

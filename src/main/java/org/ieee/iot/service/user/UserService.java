@@ -1,5 +1,6 @@
 package org.ieee.iot.service.user;
 
+import org.ieee.iot.domain.User;
 import org.ieee.iot.helper.req_model.NewUserModel;
 
 
@@ -10,4 +11,5 @@ import org.ieee.iot.helper.req_model.NewUserModel;
 public interface UserService {
     String signupNewUser(NewUserModel userModel);
     String loginUser(String username, String password);
+    boolean hasRoom(Long roomId, User user);
 }

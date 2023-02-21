@@ -10,6 +10,7 @@ import org.ieee.iot.service.token.TokenService;
 import org.ieee.iot.service.user.UserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +61,7 @@ public class AuthController {
         );
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/@me")
     public ResponseEntity<Response> getUser(@AuthenticationPrincipal Jwt jwt) {
         User user = tokenService.getUser(jwt);

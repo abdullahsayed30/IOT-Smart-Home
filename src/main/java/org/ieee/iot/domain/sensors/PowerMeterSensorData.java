@@ -15,12 +15,12 @@ import java.util.Date;
 
 @ToString
 @Data
-@Document(collection = "PowerConsumptionSensorsData")
-public class PowerConsumptionSensorData {
+@Document(collection = "PowerMeterSensorsData")
+public class PowerMeterSensorData {
 
-    private static final String SEQ_NAME = "PowerConsumptionSensorsData_sequence";
+    private static final String SEQ_NAME = "PowerMeterSensorsData_sequence";
 
-    public PowerConsumptionSensorData(Long id, Sensor sensor, Integer current, Integer voltage) {
+    public PowerMeterSensorData(Long id, Sensor sensor, Integer current, Integer voltage) {
         this.id = id;
         this.sensor = sensor;
         Current = current;

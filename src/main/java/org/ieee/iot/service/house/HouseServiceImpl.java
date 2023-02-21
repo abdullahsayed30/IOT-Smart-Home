@@ -1,10 +1,14 @@
 package org.ieee.iot.service.house;
 
 import lombok.RequiredArgsConstructor;
+import org.ieee.iot.db.sequence.SequenceGenerator;
 import org.ieee.iot.domain.House;
 import org.ieee.iot.domain.Room;
+import org.ieee.iot.domain.User;
 import org.ieee.iot.repository.HouseRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /*************************************************
@@ -16,6 +20,7 @@ import org.springframework.stereotype.Service;
 public class HouseServiceImpl implements HouseService {
 
     private final HouseRepository houseRepository;
+    private final SequenceGenerator sequenceGenerator;
 
     @Override
     public House createHouse(House house) {
@@ -23,15 +28,17 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public House createHouseForNewUser(String address) {
-        House house = new House();
-        house.setAddress(address);
+    public House createHouseForNewUser(User user) {
+        Long houseId = sequenceGenerator.generateSequence(House.SEQ_NAME);
+        House house = new House(
+                houseId,
+                user.getFullName() + "'s House",
+                user.getFullName() + "'s house where they live",
+                user.getAddress(),
+                user
+        );
+
         return houseRepository.save(house);
     }
 
-    @Override
-    public void addRoomToHouse(House house, Room room) {
-        house.getRooms().add(room);
-        houseRepository.save(house);
-    }
 }

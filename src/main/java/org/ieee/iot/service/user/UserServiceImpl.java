@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService {
 
         Long id = sequenceGenerator.generateSequence(User.SEQ_NAME);
 
-        House house = houseService.createHouseForNewUser(userModel.getAddress());
 
         User user = new User(
                 id,
@@ -50,10 +49,12 @@ public class UserServiceImpl implements UserService {
                 userModel.getUsername(),
                 userModel.getEmail(),
                 passwordEncoder.encode(userModel.getPassword()),
-                userModel.getPhoneNumber(),
-                house
+                userModel.getPhoneNumber()
         );
 
+        House house = houseService.createHouseForNewUser(user);
+
+        user.setHouse(house);
         user.setRoles("USER");
 
         userRepository.save(user);
@@ -71,6 +72,11 @@ public class UserServiceImpl implements UserService {
         }
 
         return tokenService.generateToken(user);
+    }
+
+    @Override
+    public boolean hasRoom(Long roomId, User user) {
+        return user.getHouse().getRooms().stream().anyMatch(room -> room.getId().equals(roomId));
     }
 
 }

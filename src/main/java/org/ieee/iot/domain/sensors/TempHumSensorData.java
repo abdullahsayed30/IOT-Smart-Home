@@ -13,12 +13,12 @@ import java.util.Date;
 
 @Data
 @ToString
-@Document(collection = "DHT11SensorsData")
-public class DHT11SensorData {
+@Document(collection = "TempHumSensorsData")
+public class TempHumSensorData {
 
-    private static final String SEQ_NAME = "DHT11SensorsData_sequence";
+    private static final String SEQ_NAME = "TempHumSensorsData_sequence";
 
-    public DHT11SensorData(Long id, Sensor sensor, Integer temperature, Integer humidity) {
+    public TempHumSensorData(Long id, Sensor sensor, Integer temperature, Integer humidity) {
         this.id = id;
         this.sensor = sensor;
         this.temperature = temperature;
