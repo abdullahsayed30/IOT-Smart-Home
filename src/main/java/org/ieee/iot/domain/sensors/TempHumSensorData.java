@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+
 import java.util.Date;
 
 
@@ -16,7 +17,10 @@ import java.util.Date;
 @Document(collection = "TempHumSensorsData")
 public class TempHumSensorData {
 
-    private static final String SEQ_NAME = "TempHumSensorsData_sequence";
+    public static final String SEQ_NAME = "TempHumSensorsData_sequence";
+
+    public TempHumSensorData() {
+    }
 
     public TempHumSensorData(Long id, Sensor sensor, Integer temperature, Integer humidity) {
         this.id = id;

@@ -1,7 +1,11 @@
 package org.ieee.iot.service.user;
 
 import org.ieee.iot.domain.User;
+import org.ieee.iot.domain.devices.Device;
+import org.ieee.iot.domain.sensors.Sensor;
 import org.ieee.iot.helper.req_model.NewUserModel;
+
+import java.util.Map;
 
 
 /*************************************************
@@ -9,7 +13,9 @@ import org.ieee.iot.helper.req_model.NewUserModel;
  ************************************************/
 
 public interface UserService {
-    String signupNewUser(NewUserModel userModel);
-    String loginUser(String username, String password);
+    Map<String, String> signupNewUser(NewUserModel userModel);
+    Map<String, String> loginUser(String username, String password);
     boolean hasRoom(Long roomId, User user);
+    boolean hasDevice(Device device, User user);
+    boolean hasSensor(Sensor sensor, User user);
 }

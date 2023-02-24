@@ -1,14 +1,10 @@
 package org.ieee.iot;
 
-import lombok.extern.slf4j.Slf4j;
-import org.ieee.iot.controller.MqttGateway;
+import org.ieee.iot.mqtt.MqttGateway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.integration.annotation.IntegrationComponentScan;
-
-import java.util.Arrays;
 
 
 /*************************************************

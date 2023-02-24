@@ -1,7 +1,9 @@
 package org.ieee.iot.config;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.ieee.iot.mqtt.MqttMessageReceiver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.ServiceActivator;
@@ -12,25 +14,25 @@ import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
 import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
-import org.springframework.integration.mqtt.support.MqttHeaders;
-import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
-import org.springframework.messaging.MessagingException;
 
 
 /*************************************************
  * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
  ************************************************/
 
-@Configuration
 @Slf4j
+@RequiredArgsConstructor
+@Configuration
 public class MqttConfig {
 
     private static final String MQTT_SERVER = "tcp://144.24.219.44:1888";
     private static final String MQTT_USERNAME = "iot_spring_client";
     private static final String MQTT_PASSWORD = "iot_spring_client_secret";
     private static final String MQTT_CLIENT_ID = "test_spring_mqtt_server";
+
+    private final MqttMessageReceiver mqttMessageReceiver;
 
 
     @Bean
@@ -65,6 +67,7 @@ public class MqttConfig {
         adapter.setConverter(new DefaultPahoMessageConverter());
         adapter.setQos(2);
         adapter.setOutputChannel(mqttInputChannel());
+//        adapter.set
 
         return adapter;
     }
@@ -77,15 +80,8 @@ public class MqttConfig {
     @Bean
     @ServiceActivator(inputChannel = "mqttInputChannel")
     public MessageHandler handler() {
-        return new MessageHandler() {
-            @Override
-            public void handleMessage(Message<?> message) throws MessagingException {
-                String topic = (String) message.getHeaders().get(MqttHeaders.TOPIC);
-                log.info("Message received: " + message.getPayload() + " from topic: " + message.getHeaders());
-            }
-        };
+        return mqttMessageReceiver;
     }
-
 
     @Bean
     public MessageChannel mqttOutboundChannel() {
@@ -103,4 +99,5 @@ public class MqttConfig {
         messageHandler.setDefaultRetained(false);
         return messageHandler;
     }
+
 }

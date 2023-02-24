@@ -1,4 +1,4 @@
-package org.ieee.iot.db.sequence;
+package org.ieee.iot.utils.db.sequence;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 /*************************************************
- * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ * Copyright (c) 2023-2-22 Abdullah Sayed Sallam.
  ************************************************/
 
 @Data

@@ -18,7 +18,10 @@ import java.util.Date;
 @Document(collection = "PowerMeterSensorsData")
 public class PowerMeterSensorData {
 
-    private static final String SEQ_NAME = "PowerMeterSensorsData_sequence";
+    public static final String SEQ_NAME = "PowerMeterSensorsData_sequence";
+
+    public PowerMeterSensorData() {
+    }
 
     public PowerMeterSensorData(Long id, Sensor sensor, Integer current, Integer voltage) {
         this.id = id;

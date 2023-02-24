@@ -1,14 +1,11 @@
 package org.ieee.iot.service.house;
 
 import lombok.RequiredArgsConstructor;
-import org.ieee.iot.db.sequence.SequenceGenerator;
+import org.ieee.iot.utils.db.sequence.SequenceGenerator;
 import org.ieee.iot.domain.House;
-import org.ieee.iot.domain.Room;
 import org.ieee.iot.domain.User;
 import org.ieee.iot.repository.HouseRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 
 /*************************************************

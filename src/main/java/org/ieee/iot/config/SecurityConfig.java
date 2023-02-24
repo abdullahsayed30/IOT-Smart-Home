@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .oauth2ResourceServer().jwt().jwtAuthenticationConverter(new TokenAuthConverter()).and().and()
                 .authorizeHttpRequests()
-                .requestMatchers("/v1/auth/**").permitAll()
+                .requestMatchers("/api/v1/auth/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .build();

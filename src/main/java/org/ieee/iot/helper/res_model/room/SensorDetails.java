@@ -1,11 +1,9 @@
-package org.ieee.iot.domain;
-
-import lombok.Data;
-import lombok.ToString;
+package org.ieee.iot.helper.res_model.room;
 
 /*************************************************
  * Copyright (c) 2023-2-21 Abdullah Sayed Sallam.
  ************************************************/
-public abstract class Place extends BaseDocument {
+
+public class SensorDetails {
 
 }

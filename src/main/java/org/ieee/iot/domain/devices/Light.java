@@ -3,6 +3,7 @@ package org.ieee.iot.domain.devices;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.ieee.iot.domain.Place;
+import org.ieee.iot.domain.Room;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Transient;
@@ -19,15 +20,12 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@JsonIgnoreProperties({"place", "version", "createdAt", "updatedAt"})
+@JsonIgnoreProperties({"room", "version", "createdAt", "updatedAt"})
 @Document("lights")
 public class Light extends Device {
 
     @Transient
     public final static String SEQ_NAME = "lights_sequence";
-
-    @DocumentReference
-    private Place place;
 
     @CreatedDate
     private Date createdAt;
@@ -40,8 +38,10 @@ public class Light extends Device {
 
     private boolean state;
 
-    public Light(Long id, String name, String description, Place place) {
-        super(id, name, description);
-        this.place = place;
+    public Light(Long id, String name, String description, Room room) {
+        super(id, name, description, room);
+    }
+
+    public Light() {
     }
 }

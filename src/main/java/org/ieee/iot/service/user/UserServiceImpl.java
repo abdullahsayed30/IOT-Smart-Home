@@ -1,7 +1,9 @@
 package org.ieee.iot.service.user;
 
 import lombok.RequiredArgsConstructor;
-import org.ieee.iot.db.sequence.SequenceGenerator;
+import org.ieee.iot.domain.devices.Device;
+import org.ieee.iot.domain.sensors.Sensor;
+import org.ieee.iot.utils.db.sequence.SequenceGenerator;
 import org.ieee.iot.domain.House;
 import org.ieee.iot.domain.User;
 import org.ieee.iot.helper.req_model.NewUserModel;
@@ -10,6 +12,8 @@ import org.ieee.iot.service.house.HouseService;
 import org.ieee.iot.service.token.TokenService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 
 /*************************************************
@@ -29,7 +33,7 @@ public class UserServiceImpl implements UserService {
     private final HouseService houseService;
 
     @Override
-    public String signupNewUser(NewUserModel userModel) {
+    public Map<String, String> signupNewUser(NewUserModel userModel) {
         if (userRepository.existsByUsername(userModel.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
@@ -59,11 +63,11 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
 
-        return tokenService.generateToken(user);
+        return tokenService.generateTokens(user);
     }
 
     @Override
-    public String loginUser(String username, String password) {
+    public Map<String, String> loginUser(String username, String password) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -71,7 +75,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Invalid password");
         }
 
-        return tokenService.generateToken(user);
+        return tokenService.generateTokens(user);
     }
 
     @Override
@@ -79,4 +83,13 @@ public class UserServiceImpl implements UserService {
         return user.getHouse().getRooms().stream().anyMatch(room -> room.getId().equals(roomId));
     }
 
+    @Override
+    public boolean hasDevice(Device device, User user) {
+        return user.getHouse().getRooms().stream().anyMatch(r -> r.equals(device.getRoom()));
+    }
+
+    @Override
+    public boolean hasSensor(Sensor sensor, User user) {
+        return user.getHouse().getRooms().stream().anyMatch(r -> r.equals(sensor.getRoom()));
+    }
 }

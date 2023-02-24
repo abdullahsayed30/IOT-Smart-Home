@@ -1,4 +1,4 @@
-package org.ieee.iot.db.sequence;
+package org.ieee.iot.utils.db.sequence;
 
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
@@ -10,7 +10,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 
 
 /*************************************************
- * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
+ * Copyright (c) 2023-2-22 Abdullah Sayed Sallam.
  ************************************************/
 
 @Service

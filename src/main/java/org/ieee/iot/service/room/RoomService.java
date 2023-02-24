@@ -9,6 +9,9 @@ import org.ieee.iot.helper.req_model.NewDeviceModel;
 import org.ieee.iot.helper.req_model.NewRoomModel;
 import org.ieee.iot.helper.req_model.NewSensorModel;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 
 /*************************************************
  * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
@@ -16,6 +19,8 @@ import org.ieee.iot.helper.req_model.NewSensorModel;
 
 public interface RoomService {
     Room createRoom(User user, NewRoomModel newRoomModel);
+    ArrayList<Map<String, Object>> getRooms(User user);
+
     Device addDeviceToRoom(User user, Long roomId, NewDeviceModel deviceModel);
     Sensor addSensorToRoom(User user, Long roomId, NewSensorModel sensorModel);
 

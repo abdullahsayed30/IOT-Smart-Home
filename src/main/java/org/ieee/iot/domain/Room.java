@@ -33,11 +33,11 @@ public class Room extends Place {
     private House house;
 
     @ReadOnlyProperty
-    @DocumentReference(lookup = "{ 'place': ?#{#self._id} }")
+    @DocumentReference(lookup = "{ 'room': ?#{#self._id} }")
     private List<Light> lights;
 
     @ReadOnlyProperty
-    @DocumentReference(lookup = "{ 'place': ?#{#self._id} }")
+    @DocumentReference(lookup = "{ 'room': ?#{#self._id} }")
     private List<Sensor> sensors;
 
     public Room(Long id, String name, String description, House house) {

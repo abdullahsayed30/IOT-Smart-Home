@@ -18,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Clock;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -25,9 +27,9 @@ import java.util.Map;
  * Copyright (c) 2023-2-18 Abdullah Sayed Sallam.
  ************************************************/
 
-@RequestMapping("/v1/room")
-@RestController
+@RequestMapping("/api/v1/room")
 @RequiredArgsConstructor
+@RestController
 public class RoomController {
 
     private final AuthenticationFacade authenticationFacade;
@@ -42,7 +44,7 @@ public class RoomController {
                 .status(HttpStatus.OK)
                 .statusCode(HttpStatus.OK.value())
                 .message("Rooms retrieved successfully.")
-                .data(Map.of("rooms", user.getHouse().getRooms()))
+                .data(Map.of("rooms", roomService.getRooms(user)))
                 .build());
     }
 
@@ -66,6 +68,7 @@ public class RoomController {
     public ResponseEntity<Response> addDeviceToRoom(@PathVariable Long roomId, @RequestBody @Valid NewDeviceModel deviceModel) {
         User user = authenticationFacade.getAuthenticatedUser();
         Device device = roomService.addDeviceToRoom(user, roomId, deviceModel);
+
         return ResponseEntity.created(null)
                 .body(Response.builder()
                         .timeStamp(LocalDateTime.now().toString())
@@ -79,8 +82,8 @@ public class RoomController {
     @PostMapping("/{roomId}/sensor")
     public ResponseEntity<Response> addSensorToRoom(@PathVariable Long roomId, @RequestBody @Valid NewSensorModel newSensor) {
         User user = authenticationFacade.getAuthenticatedUser();
-
         Sensor sensor = roomService.addSensorToRoom(user, roomId, newSensor);
+
         return ResponseEntity.created(null)
                 .body(Response.builder()
                         .timeStamp(LocalDateTime.now().toString())
@@ -89,5 +92,4 @@ public class RoomController {
                         .message("Sensor " + sensor.getName() + " added to room successfully.")
                         .build());
     }
-
 }
